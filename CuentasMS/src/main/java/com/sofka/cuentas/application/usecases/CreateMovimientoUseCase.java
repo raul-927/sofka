@@ -27,6 +27,7 @@ public class CreateMovimientoUseCase implements CreateMovimientoIn {
 	public Movimiento createMovimiento(Movimiento movimiento) throws MovimientoException{
 		var cuenta = cuentaOut.selectCuenta(movimiento.getCuenta());
 		LocalDate fechaHoy = LocalDate.now();
+		
 		movimiento.setFecha(fechaHoy);
 		if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
 			throw new MovimientoException("Saldo insuficiente");

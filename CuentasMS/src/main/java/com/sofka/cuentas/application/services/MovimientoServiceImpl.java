@@ -59,4 +59,10 @@ public class MovimientoServiceImpl implements MovimientoService {
 		return selectMovimientoIn.selectMovimiemto(movimiento);
 	}
 
+	@Override
+	public List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion) {
+		
+		return selectMovimientoIn.findMovimientoByFechaAndCliente(fechaInicial, fechaFinal, identificacion);
+	}
+
 }

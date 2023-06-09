@@ -52,4 +52,12 @@ public class MovimientoAdapter implements MovimientoOut {
 		return null;
 	}
 
+	@Override
+	public List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion) {
+		
+		var movimientosEntity = movimientoRepository.findMovimientoByFechaAndCliente(fechaInicial, fechaFinal, identificacion);
+		
+		return (List<Movimiento>) movimientoMapper.toMovimientos(movimientosEntity);
+	}
+
 }

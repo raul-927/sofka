@@ -10,4 +10,5 @@ public interface MovimientoOut {
 	List<Movimiento>selectAllMovimientos();
 	Movimiento selectMovimiemto(Movimiento movimiento);
 	Movimiento updateMovimiento(Movimiento movimiento);
+	List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion);
 }

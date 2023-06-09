@@ -20,7 +20,7 @@ public interface MovimientoMapper {
         @Mapping(source = "descripcionMovimiento", 		target = "descripcionMovimiento")
         })
 		Movimiento toMovimiento(MovimientoEntity movimientoEntity);
-		Iterable<Movimiento> tomovimientos(Iterable<MovimientoEntity> movimientoEntity);
+		Iterable<Movimiento> toMovimientos(Iterable<MovimientoEntity> movimientoEntity);
 		
 		@InheritInverseConfiguration
 		MovimientoEntity toMovimientoEnity (Movimiento movimiento);

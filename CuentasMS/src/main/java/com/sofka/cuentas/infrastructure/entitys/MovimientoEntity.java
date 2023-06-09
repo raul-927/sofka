@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sofka.cuentas.domain.enumerator.TipoCuentaEnum;
 
 @Entity
@@ -25,6 +28,9 @@ public class MovimientoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int movimientoId;
+	
+	//@JsonFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate fecha;
 	
 	@Enumerated(EnumType.STRING)
