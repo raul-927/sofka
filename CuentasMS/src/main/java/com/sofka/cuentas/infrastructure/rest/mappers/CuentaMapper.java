@@ -22,6 +22,6 @@ public interface CuentaMapper {
 		Iterable<Cuenta> tocuentas(Iterable<CuentaEntity> cuentaEntity);
 		
 		@InheritInverseConfiguration
-		CuentaEntity toClienteEnity (Cuenta cuenta);
+		CuentaEntity toCuentaEnity (Cuenta cuenta);
 
 }

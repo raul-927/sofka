@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sofka.cuentas.domain.enumerator.TipoCuentaEnum;
@@ -31,7 +32,16 @@ public class MovimientoEntity implements Serializable{
 	private BigDecimal saldo;
 	private String descripcionMovimiento;
 	
+	@OneToOne
+	private CuentaEntity cuenta;
 	
+	
+	public CuentaEntity getCuenta() {
+		return cuenta;
+	}
+	public void setCuenta(CuentaEntity cuenta) {
+		this.cuenta = cuenta;
+	}
 	public int getMovimientoId() {
 		return movimientoId;
 	}

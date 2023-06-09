@@ -2,18 +2,30 @@ package com.sofka.cuentas.infrastructure.adapters;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sofka.cuentas.domain.models.Movimiento;
 import com.sofka.cuentas.domain.ports.out.MovimientoOut;
+import com.sofka.cuentas.infrastructure.repository.MovimientoRepository;
+import com.sofka.cuentas.infrastructure.rest.mappers.MovimientoMapper;
 
 @Component
 public class MovimientoAdapter implements MovimientoOut {
+	
+	@Autowired
+	private MovimientoRepository movimientoRepository;
+	
+	
+	@Autowired
+	private MovimientoMapper movimientoMapper;
 
 	@Override
-	public Movimiento createMovimiento(Movimiento movimientio) {
+	public Movimiento createMovimiento(Movimiento movimiento) {
+		var movimientoEntity = movimientoMapper.toMovimientoEnity(movimiento);
 		
-		return null;
+		return movimientoMapper.toMovimiento(movimientoRepository.save(movimientoEntity));
+		
 	}
 
 	@Override

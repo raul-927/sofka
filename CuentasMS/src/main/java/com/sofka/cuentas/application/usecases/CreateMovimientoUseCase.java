@@ -1,24 +1,40 @@
 package com.sofka.cuentas.application.usecases;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 import com.sofka.cuentas.domain.models.Movimiento;
 import com.sofka.cuentas.domain.ports.in.CreateMovimientoIn;
+import com.sofka.cuentas.domain.ports.out.CuentaOut;
 import com.sofka.cuentas.domain.ports.out.MovimientoOut;
+import com.sofka.cuentas.infrastructure.exceptions.MovimientoException;
 
 @Component
 public class CreateMovimientoUseCase implements CreateMovimientoIn {
+	
+	private final CuentaOut cuentaOut;
 
 	private final MovimientoOut movimientoOut;
 	
-	public CreateMovimientoUseCase(MovimientoOut movimientoOut) {
+	public CreateMovimientoUseCase(MovimientoOut movimientoOut, CuentaOut cuentaOut) {
 		this.movimientoOut = movimientoOut;
+		this.cuentaOut = cuentaOut;
 	}
 	
 	@Override
-	public Movimiento createMovimiento(Movimiento movimientio) {
+	public Movimiento createMovimiento(Movimiento movimiento) throws MovimientoException{
+		var cuenta = cuentaOut.selectCuenta(movimiento.getCuenta());
 		
-		return movimientoOut.createMovimiento(movimientio);
+		if(cuenta.getSaldoInicial().compareTo(new BigDecimal(0))>0) {
+			if(movimiento.getValor().compareTo(cuenta.getSaldoInicial())< 0) {
+				throw new MovimientoException("Saldo insuficiente");
+			}
+			cuenta.getSaldoInicial().min(movimiento.getValor());
+			cuentaOut.updateCuenta(cuenta);
+			return movimientoOut.createMovimiento(movimiento);
+		}
+		return null;
 	}
 
 }

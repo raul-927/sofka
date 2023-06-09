@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sofka.cuentas.domain.enumerator.TipoCuentaEnum;
@@ -27,6 +28,9 @@ public class CuentaEntity implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private TipoCuentaEnum 	tipoCuenta;
 	private BigDecimal 		saldoInicial;
+	
+	@OneToOne
+	private ClienteViewEntity cliente;
 	private boolean 		estado;
 	
 	public Long getCuentaId() {
@@ -58,6 +62,12 @@ public class CuentaEntity implements Serializable{
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public ClienteViewEntity getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteViewEntity cliente) {
+		this.cliente = cliente;
 	}
 
 }

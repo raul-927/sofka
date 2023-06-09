@@ -12,6 +12,7 @@ public class Cuenta implements Serializable{
 	private Long 			nroCuenta;
 	private TipoCuentaEnum 	tipoCuenta;
 	private BigDecimal 		saldoInicial;
+	private Cliente 		cliente;
 	private boolean 		estado;
 	
 	public Long getCuentaId() {
@@ -43,6 +44,12 @@ public class Cuenta implements Serializable{
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 }

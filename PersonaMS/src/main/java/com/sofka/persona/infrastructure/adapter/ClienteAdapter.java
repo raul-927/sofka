@@ -75,17 +75,6 @@ public class ClienteAdapter implements ClienteOut {
 		
 		return null;
 		
-		/*Optional<ClienteEntity> existCliente = clienteRepository.findById(id);
-		if(existCliente.isPresent()) {
-			fields.forEach((key, value)->{
-				Field field = ReflectionUtils.findField(ClienteEntity.class, key);
-				field.setAccessible(true);
-				ReflectionUtils.setField(field, existCliente.get(), value);
-			});
-			var clientResult = 	clienteRepository.save(existCliente.get());
-			return clienteMapper.toCliente(clientResult);
-		}
-		return null;*/
 	}
 
 	@Override

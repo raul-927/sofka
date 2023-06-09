@@ -15,6 +15,7 @@ public class Movimiento implements Serializable{
 	private BigDecimal valor;
 	private BigDecimal saldo;
 	private String descripcionMovimiento;
+	private Cuenta cuenta;
 	
 	
 	public int getMovimientoId() {
@@ -52,6 +53,12 @@ public class Movimiento implements Serializable{
 	}
 	public void setDescripcionMovimiento(String descripcionMovimiento) {
 		this.descripcionMovimiento = descripcionMovimiento;
+	}
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 
 }
