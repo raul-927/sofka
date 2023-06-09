@@ -2,7 +2,7 @@ package com.sofka.cuentas.domain.enumerator;
 
 public enum TipoCuentaEnum {
 	
-	DEBITO(1, "Débito"), CREDITO(2, "Crédito");
+	AHORRO(1, "Ahorro"), CORRIENTE(2, "Corriente");
 	
 	
 	private int id;

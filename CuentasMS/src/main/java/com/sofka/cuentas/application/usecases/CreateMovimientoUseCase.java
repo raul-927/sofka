@@ -27,7 +27,7 @@ public class CreateMovimientoUseCase implements CreateMovimientoIn {
 		var cuenta = cuentaOut.selectCuenta(movimiento.getCuenta());
 		
 		if(cuenta.getSaldoInicial().compareTo(new BigDecimal(0))>0) {
-			if(movimiento.getValor().compareTo(cuenta.getSaldoInicial())< 0) {
+			if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
 				throw new MovimientoException("Saldo insuficiente");
 			}
 			cuenta.getSaldoInicial().min(movimiento.getValor());
