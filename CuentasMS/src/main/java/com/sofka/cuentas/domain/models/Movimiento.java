@@ -2,6 +2,7 @@ package com.sofka.cuentas.domain.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.sofka.cuentas.domain.enumerator.TipoCuentaEnum;
@@ -10,7 +11,7 @@ public class Movimiento implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int movimientoId;
-	private Date fecha;
+	private LocalDate fecha;
 	private TipoCuentaEnum tipoMovimiento;
 	private BigDecimal valor;
 	private BigDecimal saldo;
@@ -24,10 +25,10 @@ public class Movimiento implements Serializable{
 	public void setMovimientoId(int movimientoId) {
 		this.movimientoId = movimientoId;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public TipoCuentaEnum getTipoMovimiento() {

@@ -2,6 +2,7 @@ package com.sofka.cuentas.infrastructure.entitys;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class MovimientoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int movimientoId;
-	private Date fecha;
+	private LocalDate fecha;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoCuentaEnum tipoMovimiento;
@@ -48,10 +49,10 @@ public class MovimientoEntity implements Serializable{
 	public void setMovimientoId(int movimientoId) {
 		this.movimientoId = movimientoId;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public TipoCuentaEnum getTipoMovimiento() {

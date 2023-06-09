@@ -1,6 +1,7 @@
 package com.sofka.cuentas.application.usecases;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
@@ -25,12 +26,13 @@ public class CreateMovimientoUseCase implements CreateMovimientoIn {
 	@Override
 	public Movimiento createMovimiento(Movimiento movimiento) throws MovimientoException{
 		var cuenta = cuentaOut.selectCuenta(movimiento.getCuenta());
-		
+		LocalDate fechaHoy = LocalDate.now();
+		movimiento.setFecha(fechaHoy);
 		if(cuenta.getSaldoInicial().compareTo(new BigDecimal(0))>0) {
 			if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
 				throw new MovimientoException("Saldo insuficiente");
 			}
-			cuenta.getSaldoInicial().min(movimiento.getValor());
+			cuenta.setSaldoInicial(cuenta.getSaldoInicial().min(movimiento.getValor()));
 			cuentaOut.updateCuenta(cuenta);
 			return movimientoOut.createMovimiento(movimiento);
 		}
