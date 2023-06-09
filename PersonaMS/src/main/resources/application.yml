@@ -1,0 +1,30 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /clienteMS
+spring:
+ datasource:
+  url: jdbc:mysql://localhost/cliente_sofka_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: raraherher
+  password: Trkusr1234@
+ jpa:
+   hibernate:
+    ddl-auto: update
+ application:
+    name: clienteMS
+ cloud:
+    stream:
+      kafka:
+        binder:
+          replicationFactor: 1
+          auto-create-topics: true
+          brokers: localhost:9092
+      bindings:
+        binding-out-cliente:
+          destination: cliente-topic
+          content-type: application/json
+          group: sofka
+        binding-in-cliente:
+          destination: cliente-topic
+          content-type: application/json
+          group: sofka

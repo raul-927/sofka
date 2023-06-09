@@ -1,0 +1,30 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /cuentaMS
+spring:
+ datasource:
+  url: jdbc:mysql://localhost/cuentas_sofka_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: raraherher
+  password: Trkusr1234@
+ jpa:
+   hibernate:
+    ddl-auto: update
+ application:
+    name: cuentaMS
+ cloud:
+    stream:
+      kafka:
+        binder:
+          replicationFactor: 1
+          auto-create-topics: true
+          brokers: localhost:9092
+      bindings:
+        binding-out-cuenta:
+          destination: cuenta-topic
+          content-type: application/json
+          group: sofka
+        binding-in-cliente:
+          destination: cliente-topic
+          content-type: application/json
+          group: sofka 
