@@ -28,15 +28,13 @@ public class CreateMovimientoUseCase implements CreateMovimientoIn {
 		var cuenta = cuentaOut.selectCuenta(movimiento.getCuenta());
 		LocalDate fechaHoy = LocalDate.now();
 		movimiento.setFecha(fechaHoy);
-		if(cuenta.getSaldoInicial().compareTo(new BigDecimal(0))>0) {
-			if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
-				throw new MovimientoException("Saldo insuficiente");
-			}
-			cuenta.setSaldoInicial(cuenta.getSaldoInicial().min(movimiento.getValor()));
-			cuentaOut.updateCuenta(cuenta);
-			return movimientoOut.createMovimiento(movimiento);
+		if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
+			throw new MovimientoException("Saldo insuficiente");
 		}
-		return null;
+		cuenta.setSaldoInicial(cuenta.getSaldoInicial().subtract(movimiento.getValor()));
+		cuentaOut.updateCuenta(cuenta);
+		return movimientoOut.createMovimiento(movimiento);
+		
 	}
 
 }

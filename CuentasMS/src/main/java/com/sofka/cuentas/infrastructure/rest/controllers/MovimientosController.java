@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sofka.cuentas.application.services.MovimientoService;
 import com.sofka.cuentas.domain.models.Cuenta;
 import com.sofka.cuentas.domain.models.Movimiento;
+import com.sofka.cuentas.infrastructure.exceptions.MovimientoException;
 
 @RestController
 @RequestMapping("/movimientos")
@@ -24,11 +25,16 @@ public class MovimientosController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Movimiento> createMovimiento(@RequestBody Movimiento movimiento){
+	public ResponseEntity<?> createMovimiento(@RequestBody Movimiento movimiento) throws MovimientoException{
 		HttpHeaders header = new HttpHeaders(); 
-		var movimientoResult = movimientoService.createMovimiento(movimiento);
+		try {
+			var movimientoResult = movimientoService.createMovimiento(movimiento);
+			return new ResponseEntity<Movimiento>(movimientoResult, header, HttpStatus.CREATED);
+		}
+		catch(MovimientoException ex) {
+			return new ResponseEntity<>(new MovimientoException(ex.getMessage()).getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
-		return new ResponseEntity<Movimiento>(movimientoResult, header, HttpStatus.CREATED);
 	}
 	
 	
