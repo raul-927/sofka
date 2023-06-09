@@ -32,7 +32,7 @@ public class MovimientosController {
 			return new ResponseEntity<Movimiento>(movimientoResult, header, HttpStatus.CREATED);
 		}
 		catch(MovimientoException ex) {
-			return new ResponseEntity<>(new MovimientoException(ex.getMessage()).getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(new MovimientoException(ex.getMessage()).getMessage(), null, HttpStatus.OK);
 		}
 		
 	}
