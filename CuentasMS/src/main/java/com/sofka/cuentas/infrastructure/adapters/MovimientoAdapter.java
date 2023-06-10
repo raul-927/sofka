@@ -53,9 +53,9 @@ public class MovimientoAdapter implements MovimientoOut {
 	}
 
 	@Override
-	public List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion) {
+	public List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal) {
 		
-		var movimientosEntity = movimientoRepository.findMovimientoByFechaAndCliente(fechaInicial, fechaFinal, identificacion);
+		var movimientosEntity = movimientoRepository.findMovimientoByFechaAndCliente(identificacion, fechaInicial, fechaFinal);
 		
 		return (List<Movimiento>) movimientoMapper.toMovimientos(movimientosEntity);
 	}

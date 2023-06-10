@@ -31,9 +31,9 @@ public class SelectMovimientoUseCase implements SelectMovimientoIn {
 	}
 
 	@Override
-	public List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion) {
+	public List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal) {
 		
-		return movimientoOut.findMovimientoByFechaAndCliente(fechaInicial, fechaFinal, identificacion);
+		return movimientoOut.findMovimientoByFechaAndCliente(identificacion, fechaInicial, fechaFinal);
 	}
 
 }

@@ -42,10 +42,10 @@ public class MovimientosController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<?> findMovimientosByFechaAndCliente(@RequestParam String fechaInicial, @RequestParam String fechaFinal, @RequestParam int identificacion){
+	public ResponseEntity<?> findMovimientosByFechaAndCliente(@RequestParam int identificacion, @RequestParam String fechaInicial, @RequestParam String fechaFinal){
 		HttpHeaders header = new HttpHeaders(); 
 		try {
-			var movimientoResult = movimientoService.findMovimientoByFechaAndCliente(fechaInicial, fechaFinal, identificacion);
+			var movimientoResult = movimientoService.findMovimientoByFechaAndCliente(identificacion, fechaInicial, fechaFinal);
 			return new ResponseEntity<List<Movimiento>>(movimientoResult, header, HttpStatus.CREATED);
 		}
 		catch(MovimientoException ex) {

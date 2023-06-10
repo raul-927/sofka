@@ -8,5 +8,5 @@ public interface SelectMovimientoIn {
 	
 	List<Movimiento>selectAllMovimientos();
 	Movimiento selectMovimiemto(Movimiento movimiento);
-	List<Movimiento> findMovimientoByFechaAndCliente(String fechaInicial, String fechaFinal, int identificacion);
+	List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal);
 }
