@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "b0b0ee76-c4ea-43ec-960d-725c8a8c2f92",
+		"name": "SOFKA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9712537"
+	},
+	"item": [
+		{
+			"name": "ClienteMS",
+			"item": [
+				{
+					"name": "CreateCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nombre\":\"Raul\",\n    \"genero\": \"MASCULINO\",\n    \"edad\": 50,\n    \"identificacion\": 1027215,\n    \"direccion\": \"calle 99B #6C-74 ap 1\",\n    \"telefono\": \"3008470646\",\n    \"contrasenia\":\"raul1234\",\n    \"estado\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/clienteMS/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"clienteMS",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCliente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n   \"clienteId\": 1, \n    \"identificacion\":43639518\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/clienteMS/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"clienteMS",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clienteId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/clienteMS/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"clienteMS",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectAllClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/clienteMS/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"clienteMS",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuentas",
+			"item": [
+				{
+					"name": "InsertCuenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nroCuenta\":12345,\n    \"tipoCuenta\":\"AHORRO\",\n    \"saldoInicial\":2000000,\n    \"cliente\":{\n        \"clienteId\":1\n    },\n    \"estado\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8092/cuentaMS/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"cuentaMS",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8092/cuentaMS/movimientos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoMovimiento\": \"AHORRO\",\n    \"valor\": 50000,\n    \"saldo\": 0,\n    \"descripcionMovimiento\": \"Movimiento varios\",\n    \"cuenta\":{\n        \"cuentaId\":1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8092/cuentaMS/movimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"cuentaMS",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8092/cuentaMS/movimientos?fechaInicial=2023-06-09&fechaFinal=2023-06-10&identificacion=1027215",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8092/cuentaMS/movimientos?identificacion=1027215&fechaInicial=2023-06-09&fechaFinal=2023-06-10",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"cuentaMS",
+								"movimientos"
+							],
+							"query": [
+								{
+									"key": "identificacion",
+									"value": "1027215"
+								},
+								{
+									"key": "fechaInicial",
+									"value": "2023-06-09"
+								},
+								{
+									"key": "fechaFinal",
+									"value": "2023-06-10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
