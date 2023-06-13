@@ -60,4 +60,11 @@ public class MovimientoAdapter implements MovimientoOut {
 		return (List<Movimiento>) movimientoMapper.toMovimientos(movimientosEntity);
 	}
 
+	@Override
+	public Movimiento findMovimientoByLastId() {
+		var movimientosEntity = movimientoRepository.findMovimientoByLastId();
+		
+		return movimientoMapper.toMovimiento(movimientosEntity);
+	}
+
 }

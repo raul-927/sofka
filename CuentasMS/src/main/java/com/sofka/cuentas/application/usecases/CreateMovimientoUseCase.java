@@ -32,7 +32,9 @@ public class CreateMovimientoUseCase implements CreateMovimientoIn {
 		if(cuenta.getSaldoInicial().compareTo(movimiento.getValor())< 0) {
 			throw new MovimientoException("Saldo insuficiente");
 		}
+		movimiento.setSaldo(cuenta.getSaldoInicial());
 		cuenta.setSaldoInicial(cuenta.getSaldoInicial().subtract(movimiento.getValor()));
+		movimiento.setSaldo(movimiento.getSaldo().subtract(movimiento.getValor()));
 		cuentaOut.updateCuenta(cuenta);
 		return movimientoOut.createMovimiento(movimiento);
 		

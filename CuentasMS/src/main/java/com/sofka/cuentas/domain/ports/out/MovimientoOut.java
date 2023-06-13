@@ -11,4 +11,5 @@ public interface MovimientoOut {
 	Movimiento selectMovimiemto(Movimiento movimiento);
 	Movimiento updateMovimiento(Movimiento movimiento);
 	List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal);
+	Movimiento findMovimientoByLastId();
 }

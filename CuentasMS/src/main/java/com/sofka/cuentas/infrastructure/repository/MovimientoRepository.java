@@ -32,4 +32,18 @@ public interface MovimientoRepository extends CrudRepository<MovimientoEntity, L
 			+ "WHERE cv.identificacion = :identificacion "
 			+ "AND m.fecha BETWEEN :fechaInicial AND :fechaFinal", nativeQuery = true)
 	List<MovimientoEntity> findMovimientoByFechaAndCliente(@Param("identificacion")int identificacion, @Param("fechaInicial")String fechaInicial, @Param("fechaFinal")String fechaFinal);
+	
+	
+	@Query(value = "SELECT\n"
+			+ "m.movimiento_id,\n"
+			+ "m.fecha,\n"
+			+ "m.tipo_movimiento,\n"
+			+ "m.valor,\n"
+			+ "m.cuenta_cuenta_id,\n"
+			+ "m.descripcion_movimiento,\n"
+			+ "m.saldo\n"
+			+ "FROM movimientos m\n"
+			+ "WHERE m.movimiento_id = (SELECT MAX(mm.movimiento_id) FROM movimientos mm)"
+			, nativeQuery = true)
+	MovimientoEntity findMovimientoByLastId();
 }
