@@ -1,5 +1,6 @@
 package com.sofka.cuentas.domain.ports.out;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import com.sofka.cuentas.domain.models.Movimiento;
@@ -12,4 +13,5 @@ public interface MovimientoOut {
 	Movimiento updateMovimiento(Movimiento movimiento);
 	List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal);
 	Movimiento findMovimientoByLastId();
+	ByteArrayInputStream movimientoReporte(List<Movimiento>movimientos);
 }

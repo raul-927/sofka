@@ -1,5 +1,6 @@
 package com.sofka.cuentas.application.services;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.sofka.cuentas.domain.models.Movimiento;
 import com.sofka.cuentas.domain.ports.in.CreateMovimientoIn;
 import com.sofka.cuentas.domain.ports.in.DeleteMovimientoIn;
+import com.sofka.cuentas.domain.ports.in.GenerarReporteMovimientoPdf;
 import com.sofka.cuentas.domain.ports.in.SelectMovimientoIn;
 import com.sofka.cuentas.domain.ports.in.UpdateMovimientoIn;
 
@@ -17,16 +19,19 @@ public class MovimientoServiceImpl implements MovimientoService {
 	private final DeleteMovimientoIn deleteMovimientoIn;
 	private final UpdateMovimientoIn updateMovimientoIn;
 	private final SelectMovimientoIn selectMovimientoIn;
+	private final GenerarReporteMovimientoPdf generarReporteMovimientoPdf;
 	
 	
 
 	public MovimientoServiceImpl(CreateMovimientoIn createMovimientoIn, DeleteMovimientoIn deleteMovimientoIn,
-			UpdateMovimientoIn updateMovimientoIn, SelectMovimientoIn selectMovimientoIn) {
+			UpdateMovimientoIn updateMovimientoIn, SelectMovimientoIn selectMovimientoIn,
+			GenerarReporteMovimientoPdf generarReporteMovimientoPdf) {
 		super();
 		this.createMovimientoIn = createMovimientoIn;
 		this.deleteMovimientoIn = deleteMovimientoIn;
 		this.updateMovimientoIn = updateMovimientoIn;
 		this.selectMovimientoIn = selectMovimientoIn;
+		this.generarReporteMovimientoPdf = generarReporteMovimientoPdf;
 	}
 
 	@Override
@@ -63,6 +68,12 @@ public class MovimientoServiceImpl implements MovimientoService {
 	public List<Movimiento> findMovimientoByFechaAndCliente(int identificacion, String fechaInicial, String fechaFinal) {
 		
 		return selectMovimientoIn.findMovimientoByFechaAndCliente(identificacion, fechaInicial, fechaFinal);
+	}
+
+	@Override
+	public ByteArrayInputStream movimientoReporte(List<Movimiento> movimientos) {
+		
+		return generarReporteMovimientoPdf.movimientoReporte(movimientos);
 	}
 
 }

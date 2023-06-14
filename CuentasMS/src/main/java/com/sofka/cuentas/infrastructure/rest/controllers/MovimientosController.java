@@ -1,9 +1,12 @@
 package com.sofka.cuentas.infrastructure.rest.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +56,19 @@ public class MovimientosController {
 		}
 	}
 	
+	
+	@GetMapping(value ="/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource>generarPdf(@RequestParam(name="identificacion")int identificacion,
+			@RequestParam(name="fechaInicial") String fechaInicial, 
+			@RequestParam(name="fechaFinal")String fechaFinal){
+		HttpHeaders headers = new HttpHeaders();
+		
+		List<Movimiento> movimientoResult = movimientoService.findMovimientoByFechaAndCliente(identificacion, fechaInicial, fechaFinal);
+		ByteArrayInputStream in = movimientoService.movimientoReporte(movimientoResult);
+		InputStreamResource reporte = new InputStreamResource(in);
+		return new ResponseEntity<>(reporte, headers, HttpStatus.CREATED);
+		
+	}
 	
 
 }

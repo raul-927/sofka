@@ -1,5 +1,6 @@
 package com.sofka.cuentas.infrastructure.adapters;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,12 @@ public class MovimientoAdapter implements MovimientoOut {
 		var movimientosEntity = movimientoRepository.findMovimientoByLastId();
 		
 		return movimientoMapper.toMovimiento(movimientosEntity);
+	}
+
+	@Override
+	public ByteArrayInputStream movimientoReporte(List<Movimiento> movimientos) {
+		
+		return null;
 	}
 
 }
