@@ -1,5 +1,7 @@
 package com.sofka.cuentas.application.usecases;
 
+import java.util.Random;
+
 import org.springframework.stereotype.Component;
 
 import com.sofka.cuentas.domain.models.Cuenta;
@@ -18,6 +20,16 @@ public class CreateCuentaUseCase implements CreateCuentaIn {
 	
 	@Override
 	public Cuenta createCuenta(Cuenta cuenta) {
+		Random nroAleatorio = new Random(System.currentTimeMillis());
+		int aux = nroAleatorio.nextInt();
+		long nro = 0;
+		if(aux<0) {
+			nro = (long)aux*(-1);
+		}else {
+			nro = (long)aux;
+		}
+		
+		cuenta.setNroCuenta(nro);
 		
 		return cuentaOut.createCuenta(cuenta);
 	}

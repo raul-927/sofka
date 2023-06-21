@@ -68,6 +68,8 @@ public class CuentaAdapter implements CuentaOut {
 			if(cuenta.getSaldoInicial()!=null) {
 				existCuenta.get().setSaldoInicial(cuenta.getSaldoInicial());
 			}
+			existCuenta.get().setTipoCuenta(cuenta.getTipoCuenta());
+			existCuenta.get().setEstado(cuenta.isEstado());
 			var cuentaResult = cuentaRepository.save(existCuenta.get());
 			return cuentaMapper.toCuenta(cuentaResult);
 		}
