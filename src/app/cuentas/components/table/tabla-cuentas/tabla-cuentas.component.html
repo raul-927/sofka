@@ -1,0 +1,92 @@
+
+  <table class="table table-hover table-bordered well well-sm">
+    <caption><h1>Cuentas</h1></caption>
+      <thead>
+        <td>id</td>
+        <td>Nro Cuenta</td>
+        <td>Tipo de cuenta</td>
+        <td>Saldo inicial</td>
+        <td>Cliente</td>
+        <td>Estado</td>
+
+        <td>Editar</td>
+        <td>Guardar</td>
+        <td>Eliminar</td>
+      </thead>
+    <tbody>
+      <tr *ngFor="let item of cuentas, let i=index">
+        <td>
+          <h4>{{item.cuentaId}}</h4>
+        </td>
+
+        <td>
+          <h4>{{item.nroCuenta}}</h4>
+        </td>
+
+        <td>
+          <select
+            class="form-control"
+            id   ="cuenta_{{item.cuentaId}}"
+            name ="cuenta_{{item.cuentaId}}"
+            [disabled]="isClicked">
+            <option class="dropdown-item" disabled [selected]="true" [ngValue]="name">{{item.tipoCuenta}}</option>
+            <option *ngFor="let name of optionsEnumTipoCuenta; let i = index" value = "{{name}}"[value]="name">
+                {{name}}
+            </option>
+          </select>
+        </td>
+
+        <td>
+          <input
+              class="form-control"
+              id   ="saldoInicial_{{item.cuentaId}}"
+              name ="saldoInicial_{{item.cuentaId}}"
+              [value]="item.saldoInicial"
+              disabled [selected]="true">
+        </td>
+
+        <td>
+          <h4>{{item.cliente.nombre}}</h4>
+        </td>
+
+        <td>
+          <select
+            class="form-control"
+            id   ="estado_{{item.cuentaId}}"
+            name ="estado_{{item.cuentaId}}"
+            [disabled]="isClicked">
+            <option class="dropdown-item" disabled [selected]="true">{{item.estado}}</option>
+            <option value= true>true</option>
+            <option value= false>false</option>
+          </select>
+        </td>
+
+        <td>
+          <input
+                  type        ="image"
+                  [disabled]  ="!habilitoLapiz"
+                  (click)     ="habilitoNombre(item.cuentaId)"
+                  src         ="/assets/glyph-iconset-master/svg/si-glyph-pencil.svg"
+                  id          ="pencil_{{item.cuentaId}}"
+          />
+        </td>
+
+        <td>
+          <input  type      ="image"
+                  disabled  ="true"
+                  (click)   ="actualizoCuenta(item)"
+                  src       ="/assets/glyph-iconset-master/svg/si-glyph-floppy-disk.svg"
+                  id        ="floppy_{{item.cuentaId}}"
+          />
+        </td>
+
+        <td>
+          <input  type    ="image"
+                  (click) ="eliminoRegistro(item.cuentaId)"
+                  src     ="/assets/glyph-iconset-master/svg/si-glyph-delete.svg"
+                  id      ="delete_{{item.grupoCuentaId}}"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>

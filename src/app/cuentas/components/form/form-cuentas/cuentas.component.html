@@ -1,0 +1,71 @@
+<h3>Crear Nueva Cuenta</h3>
+<form class="form"
+   [formGroup] ="cuentaFormGroup"
+   (ngSubmit)  ="insertCuentas(cuentaFormGroup.value)">
+
+  <fieldset style ="width: 350px;">
+    <div class    ="form-group">
+      <label for ="tipoCuenta">Tipo de cuenta:</label>
+      <select
+        [(ngModel)]="defaultValue"
+          class="form-control"
+          id="tipoCuenta"
+          [formControl]="cuentaFormGroup.controls['tipoCuenta']">
+		      <option class="dropdown-item" disabled [selected]="true" [ngValue]="defaultValue">{{defaultValue}}</option>
+          <option
+            *ngFor="let name of optionsEnumTipoCuenta; let i = index"
+            [ngValue]="name">
+              {{name}}
+          </option>
+	  </select>
+    </div>
+
+    <div class="form-group">
+      <label for="saldoInicial">Saldo inicial:</label>
+      <input  id   ="saldoInicial"
+              name ="saldoInicial"
+              [formControl]="cuentaFormGroup.controls['saldoInicial']"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="cliente">Cliente:</label>
+      <select
+      [(ngModel)]="defaultValue2"
+        class="form-control"
+        id="cliente"
+        [formControl]="cuentaFormGroup.controls['cliente']">
+        <option class="dropdown-item" disabled [selected]="true" [ngValue]="defaultValue">{{defaultValue}}</option>
+        <option
+          *ngFor="let cliente of clientes"
+          [value]="cliente.clienteId" >
+            {{cliente.nombre}}
+        </option>
+      </select>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <input  id   ="estado"
+              name ="estado"
+              [formControl]="cuentaFormGroup.controls['estado']"
+      >
+    </div>
+
+  </fieldset>
+
+  <div class="botonForm">
+    <button type="submit"
+    class="btn btn-primary">
+    Guardar
+  </button>
+
+  </div>
+</form>
+<app-tabla-cuentas
+ [cambio]="cambio">
+</app-tabla-cuentas>
