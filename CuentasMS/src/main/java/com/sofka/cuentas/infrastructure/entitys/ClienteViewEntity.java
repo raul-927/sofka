@@ -18,7 +18,6 @@ public class ClienteViewEntity extends PersonaViewEntity{
 private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long 	clienteId;
 	
 	@NotNull(message = ClienteErrorMessage.CONTRASENIA_NOT_NULL)

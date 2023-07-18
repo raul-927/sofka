@@ -31,7 +31,7 @@ public class ClienteAdapter implements ClienteOut {
 	public Cliente createCliente(Cliente cliente) {
 		var clienteEntity = clienteMapper.toClienteEnity(cliente);
 		var clienteResult = 	clienteRepository.save(clienteEntity);
-		clienteMessage.sendClienteMessage(clienteResult);
+		clienteMessage.sendClienteMessage(clienteMapper.toCliente(clienteResult));
 		return clienteMapper.toCliente(clienteResult);
 	}
 
@@ -69,6 +69,7 @@ public class ClienteAdapter implements ClienteOut {
 			if(cliente.getTelefono()!=null) {
 				existCliente.get().setTelefono(cliente.getTelefono());
 			}
+			existCliente.get().setEstado(cliente.isEstado());
 			var clienteResult = clienteRepository.save(existCliente.get());
 			return  clienteMapper.toCliente(clienteResult);
 		}

@@ -1,9 +1,12 @@
 package com.sofka.cuentas.domain.models;
 
+import java.io.Serializable;
+
 import com.sofka.cuentas.domain.enumerator.GeneroEnum;
 
-public class Cliente {
+public class Cliente implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String 		nombre;
 	private GeneroEnum 	genero;
 	private Integer 	edad;

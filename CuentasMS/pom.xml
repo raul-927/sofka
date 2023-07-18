@@ -18,6 +18,11 @@
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.sofka.utils</groupId>
+			<artifactId>SofkaUtils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>

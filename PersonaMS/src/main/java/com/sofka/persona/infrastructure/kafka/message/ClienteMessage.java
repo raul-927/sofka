@@ -15,6 +15,8 @@ import org.springframework.util.MimeTypeUtils;
 import com.sofka.persona.domain.models.Cliente;
 import com.sofka.persona.infrastructure.entitys.ClienteEntity;
 import com.sofka.persona.infrastructure.kafka.KafkaClienteProducer;
+import com.sofka.utils.dto.MessageDto;
+import com.sofka.utils.enumerator.EventEnum;
 
 
 @Component
@@ -27,13 +29,25 @@ public class ClienteMessage {
 	
 	
 	
-	public void sendClienteMessage(ClienteEntity cliente) {
-			
+	public void sendClienteMessage(Cliente cliente) {
+		MessageDto<Cliente> dto = new MessageDto(cliente, EventEnum.INSERT);
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("PARA ENVIAR Cliente: "+cliente.getNombre());
 	    map.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
 	    MessageHeaders headers = new MessageHeaders(map);
-	    GenericMessage<ClienteEntity> message = new GenericMessage<>(cliente,headers);
+	    GenericMessage<MessageDto<Cliente>> message = new GenericMessage<>(dto,headers);
+	    System.out.println("MESAGE ENVIADO: "+message.getPayload().getClass().getName());
+	    output.send(message);
+		System.out.println("ENVIADO Cliente: "+message.getPayload());
+	}
+	
+	public void updateClienteMessage(ClienteEntity cliente) {
+		MessageDto dto = new MessageDto(cliente, EventEnum.UPDATE);
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("PARA Actualizar Cliente: "+cliente.getNombre());
+	    map.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
+	    MessageHeaders headers = new MessageHeaders(map);
+	    GenericMessage<MessageDto> message = new GenericMessage<>(dto,headers);
 	    output.send(message);
 		System.out.println("ENVIADO Cliente: "+message.getPayload());
 	}
