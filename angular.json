@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FrontSofka": {
+    "LogisticaFront": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FrontSofka:build:production"
+              "browserTarget": "LogisticaFront:build:production"
             },
             "development": {
-              "browserTarget": "FrontSofka:build:development"
+              "browserTarget": "LogisticaFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FrontSofka:build"
+            "browserTarget": "LogisticaFront:build"
           }
         },
         "test": {
